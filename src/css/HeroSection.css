@@ -1,0 +1,21 @@
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-title {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.hero-subtitle {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}

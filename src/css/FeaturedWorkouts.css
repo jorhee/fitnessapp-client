@@ -1,0 +1,30 @@
+.workouts-container {
+    padding: 50px 20px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.workout-card {
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.workout-card:hover {
+    transform: scale(1.05);
+}
+
+.workout-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.workout-description {
+    margin-top: 10px;
+    font-size: 1rem;
+}
