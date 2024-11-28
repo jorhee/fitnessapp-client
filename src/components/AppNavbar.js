@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import LogoutButton from '../pages/LogoutButton';
+import AddWorkoutModal from '../components/AddWorkoutModal';
 import '../css/Nav.css';
 
-const Navbar = ({ isAuthenticated }) => {
+const Navbar = () => {
+
+    const { user } = useContext(AuthContext); 
 
   return (
     <AppBar position="sticky" color="primary">
@@ -16,10 +21,11 @@ const Navbar = ({ isAuthenticated }) => {
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Button color="inherit" component={NavLink} to="/" exact activeClassName="active-link">Home</Button>
 
-            {isAuthenticated ? (
+            {user ? (
               <>
                 <Button color="inherit" component={NavLink} to="/my-workouts" activeClassName="active-link">My Workouts</Button>
-                <Button color="inherit" component={NavLink} to="/add-workout" activeClassName="active-link">Add Workouts</Button>
+                <AddWorkoutModal />
+                <LogoutButton />
               </>
             ) : (
               <>
@@ -33,7 +39,7 @@ const Navbar = ({ isAuthenticated }) => {
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <Button color="inherit" component={NavLink} to="/" exact activeClassName="active-link">Home</Button>
 
-            {isAuthenticated ? (
+            {user ? (
               <>
                 <Button color="inherit" component={NavLink} to="/my-workouts" activeClassName="active-link">My Workouts</Button>
                 <Button color="inherit" component={NavLink} to="/add-workout" activeClassName="active-link">Add Workouts</Button>
