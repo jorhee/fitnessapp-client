@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import '../css/MyWorkoutsPage.css';  // Import the custom CSS file
-import AddWorkoutModal from '../components/AddWorkoutModal';  // Import your modal component
+import '../css/MyWorkoutsPage.css'; // Import custom CSS
+import AddWorkoutModal from '../components/AddWorkoutModal'; // Import modal component
 
 const MyWorkoutsPage = () => {
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const fetchWorkouts = async () => {
     try {
-      const token = localStorage.getItem('token'); // Get the token from localStorage (or AuthContext)
+      const token = localStorage.getItem('token'); // Get the token from localStorage
 
       if (!token) {
         setError('No token found. Please login.');
@@ -21,9 +23,9 @@ const MyWorkoutsPage = () => {
       const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/workouts/getMyWorkouts`, {
         method: 'GET',
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        }
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
       });
 
       if (!response.ok) {
@@ -55,13 +57,18 @@ const MyWorkoutsPage = () => {
     fetchWorkouts(); // Refresh the workouts list
   };
 
+  // Handle View Details button click
+  const handleViewDetails = (workoutId) => {
+    navigate(`/workouts/${workoutId}`);
+  };
+
   return (
     <Container className="my-workouts-container">
       <h1 className="my-workouts-title text-center">My Workouts</h1>
       {loading && <p>Loading...</p>}
       {error && <p className="text-danger">{error}</p>}
       <div className="my-3">
-      <AddWorkoutModal onWorkoutAdded={handleWorkoutAdded} />
+        <AddWorkoutModal onWorkoutAdded={handleWorkoutAdded} />
       </div>
       <Row>
         {workouts.length > 0 ? (
@@ -75,7 +82,13 @@ const MyWorkoutsPage = () => {
                     <strong>Duration:</strong> {workout.duration} <br />
                     <strong>Date Added:</strong> {new Date(workout.dateAdded).toLocaleDateString()}
                   </Card.Text>
-                  <Button className="workout-card-button" size="sm">View Details</Button>
+                  <Button 
+                    className="workout-card-button" 
+                    size="sm" 
+                    onClick={() => handleViewDetails(workout._id)} // Navigate on click
+                  >
+                    View Details
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>

@@ -1,0 +1,22 @@
+.workout-details-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+}
+
+.workout-details-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.workout-details-card-body {
+  padding: 20px;
+}
+
+
+.workout-button {
+  width: 100%;
+  margin-top: 20px;
+}

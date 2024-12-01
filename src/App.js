@@ -4,6 +4,7 @@ import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import LogoutButton from './pages/LogoutButton';
+import WorkoutDetailsPage from './pages/WorkoutDetailsPage';
 
 
 import Profile from './pages/Profile';
@@ -23,6 +24,7 @@ function App() {
             <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/workouts" element={<MyWorkoutsPage />} />
+            <Route path="/workouts/:workoutId" element={<WorkoutDetailsPage />} />
             <Route path="/addworkout" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<LogoutButton />} />

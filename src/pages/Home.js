@@ -1,5 +1,5 @@
 import React from 'react';
-import { CssBaseline, Container } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 
 import FeaturedWorkouts from '../components/FeaturedWorkouts';
 import HeroSection from '../components/HeroSection';
