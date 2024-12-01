@@ -35,6 +35,7 @@ export default function Login() {
                 password: password
 
             })
+            console.log("API_BASE_URL:", process.env.REACT_APP_API_BASE_URL);
         })
         .then(res => res.json())
         .then(data => {
