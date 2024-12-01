@@ -1,0 +1,82 @@
+/* Container styling */
+.my-workouts-container {
+    margin-top: 20px;
+}
+
+/* Title styling */
+.my-workouts-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Card styling */
+.workout-card {
+    background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card hover effect */
+.workout-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Card body content */
+.workout-card-body {
+    padding: 20px;
+}
+
+/* Card title */
+.workout-card-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Card subtitle for status */
+.workout-card-status {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #e74c3c; /* Red for Pending status */
+}
+
+/* Card duration and date */
+.workout-card-text {
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+/* Button styling */
+.workout-card-button {
+    background-color: #1abc9c;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.workout-card-button:hover {
+    background-color: #16a085;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .workout-card-title {
+        font-size: 1.4rem;
+    }
+
+    .workout-card-status {
+        font-size: 1rem;
+    }
+
+    .workout-card-button {
+        padding: 6px 15px;
+    }
+}

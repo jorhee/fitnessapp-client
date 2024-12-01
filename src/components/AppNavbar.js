@@ -44,7 +44,7 @@ const Navbar = () => {
 
             {user ? (
               <>
-                <NavLinkButton to="/my-workouts">
+                <NavLinkButton to="/workouts">
                   My Workouts
                 </NavLinkButton>
                 <AddWorkoutModal />

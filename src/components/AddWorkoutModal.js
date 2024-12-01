@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Button, Modal, Box, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { Notyf } from 'notyf'; // Import Notyf
+import '../css/notyf.css'; // Import Notyf CSS
 
-const AddWorkoutModal = () => {
+const AddWorkoutModal = ({ onWorkoutAdded }) => {
   const [open, setOpen] = useState(false); // State to open/close modal
   const [name, setName] = useState(''); // State for workout name
   const [duration, setDuration] = useState(''); // State for workout duration
   const [error, setError] = useState(null); // Error state to show validation messages
   const navigate = useNavigate();
+  const notyf = new Notyf(); // Initialize Notyf
 
   // Handle modal open
   const handleOpen = () => setOpen(true);
@@ -30,7 +33,7 @@ const AddWorkoutModal = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming token is stored in localStorage
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify({ name, duration }),
       });
@@ -39,13 +42,19 @@ const AddWorkoutModal = () => {
         throw new Error('Error adding workout');
       }
 
-      const data = await response.json();
 
       // Handle successful response, reset form and close modal
       setName('');
       setDuration('');
       handleClose();
-      navigate('/my-workouts'); // Redirect to "My Workouts" page or another page
+
+      // Show Notyf success message
+      notyf.success('Workout added successfully!');
+
+      // Call the callback to update the parent component
+      onWorkoutAdded();  // Trigger re-fetch of workouts on the parent page
+
+      navigate('/workouts'); // Redirect to "My Workouts" page or another page
     } catch (error) {
       // Handle error
       setError(error.message);
@@ -55,7 +64,7 @@ const AddWorkoutModal = () => {
   return (
     <div>
       {/* Button to open the modal */}
-      <Button variant="contained" color="primary" onClick={handleOpen}>
+      <Button id="addWorkout" variant="contained" color="primary" onClick={handleOpen}>
         Add Workout
       </Button>
 
@@ -103,7 +112,7 @@ const AddWorkoutModal = () => {
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
               margin="normal"
-              type="number"
+              type="string"
             />
             <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
               <Button onClick={handleClose} color="secondary">
