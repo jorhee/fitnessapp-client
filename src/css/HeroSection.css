@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 55vh; /* Change height to 75% of the viewport height */
     background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
     color: white;
     text-align: center;

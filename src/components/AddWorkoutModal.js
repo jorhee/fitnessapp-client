@@ -55,6 +55,7 @@ const AddWorkoutModal = ({ onWorkoutAdded }) => {
       onWorkoutAdded();  // Trigger re-fetch of workouts on the parent page
 
       navigate('/workouts'); // Redirect to "My Workouts" page or another page
+      window.location.reload(); // Force refresh of the workouts page
     } catch (error) {
       // Handle error
       setError(error.message);
