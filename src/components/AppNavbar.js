@@ -1,17 +1,36 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import LogoutButton from '../pages/LogoutButton';
 import AddWorkoutModal from '../components/AddWorkoutModal';
-import '../css/Nav.css';
+import '../css/AppNavbar.css';
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
 
-    const { user } = useContext(AuthContext); 
+  const NavLinkButton = ({ to, children, exact }) => (
+    <NavLink
+      to={to}
+      exact={exact}
+      className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')}
+    >
+      {({ isActive }) => (
+        <Button
+          color="inherit"
+          sx={{
+            color: isActive ? 'yellow' : 'white',
+            textDecoration: 'none',
+          }}
+        >
+          {children}
+        </Button>
+      )}
+    </NavLink>
+  );
 
   return (
-    <AppBar position="sticky" color="primary">
+    <AppBar position="sticky" color="primary" className="navbar">
       <Container maxWidth="lg">
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
@@ -19,35 +38,26 @@ const Navbar = () => {
           </Typography>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button color="inherit" component={NavLink} to="/" exact activeClassName="active-link">Home</Button>
+            <NavLinkButton to="/" exact="true">
+              Home
+            </NavLinkButton>
 
             {user ? (
               <>
-                <Button color="inherit" component={NavLink} to="/my-workouts" activeClassName="active-link">My Workouts</Button>
+                <NavLinkButton to="/my-workouts">
+                  My Workouts
+                </NavLinkButton>
                 <AddWorkoutModal />
                 <LogoutButton />
               </>
             ) : (
               <>
-                <Button color="inherit" component={NavLink} to="/login" activeClassName="active-link">Login</Button>
-                <Button color="inherit" component={NavLink} to="/register" activeClassName="active-link">Register</Button>
-              </>
-            )}
-          </Box>
-
-          {/* Mobile responsiveness using Bootstrap */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <Button color="inherit" component={NavLink} to="/" exact activeClassName="active-link">Home</Button>
-
-            {user ? (
-              <>
-                <Button color="inherit" component={NavLink} to="/my-workouts" activeClassName="active-link">My Workouts</Button>
-                <Button color="inherit" component={NavLink} to="/add-workout" activeClassName="active-link">Add Workouts</Button>
-              </>
-            ) : (
-              <>
-                <Button color="inherit" component={NavLink} to="/login" activeClassName="active-link">Login</Button>
-                <Button color="inherit" component={NavLink} to="/register" activeClassName="active-link">Register</Button>
+                <NavLinkButton to="/login">
+                  Login
+                </NavLinkButton>
+                <NavLinkButton to="/register">
+                  Register
+                </NavLinkButton>
               </>
             )}
           </Box>

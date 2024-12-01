@@ -40,7 +40,6 @@ export default function Login() {
         .then(data => {
 
             if(data.access !== undefined){
-                console.log("API_BASE_URL:", process.env.REACT_APP_API_BASE_URL)
                 console.log(data.access);
                 // Use the login function from AuthContext
                 login(data.access); // This will store the token and fetch user details
