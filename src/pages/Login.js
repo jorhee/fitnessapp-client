@@ -35,13 +35,12 @@ export default function Login() {
                 password: password
 
             })
-            console.log("API_BASE_URL:", process.env.REACT_APP_API_BASE_URL);
         })
         .then(res => res.json())
         .then(data => {
 
             if(data.access !== undefined){
-
+                console.log("API_BASE_URL:", process.env.REACT_APP_API_BASE_URL)
                 console.log(data.access);
                 // Use the login function from AuthContext
                 login(data.access); // This will store the token and fetch user details
@@ -60,7 +59,7 @@ export default function Login() {
 
                 notyf.error(`${email} does not exist. Try Again.`);
             }
-
+            
         })
         .catch(error => {
             console.error('Error during login', error);
