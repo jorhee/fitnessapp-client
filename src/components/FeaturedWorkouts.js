@@ -14,7 +14,7 @@ const FeaturedWorkouts = () => {
       const token = localStorage.getItem('token'); // Get the token from localStorage
 
       if (!token) {
-        setError('No token found. Please login.');
+        setError('Please login.');
         setLoading(false);
         return;
       }
