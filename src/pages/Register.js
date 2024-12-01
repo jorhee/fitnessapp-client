@@ -59,7 +59,7 @@ export default function Register() {
     return user ? (
         <Navigate to="/login" />
     ) : (
-        <Form onSubmit={registerUser}>
+        <Form onSubmit={registerUser} className="registration">
             <h1 className="mt-5 text-center">Register</h1>
             <div className="container p-4" style={{ maxWidth: '600px', border: '1px solid #ced4da' }}>
                 <Form.Group className="my-3">

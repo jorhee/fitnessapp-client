@@ -82,7 +82,7 @@ export default function Login() {
         (user) ? 
             <Navigate to="/" />
             :
-            <Form onSubmit={(e) => authenticate(e)} >
+            <Form onSubmit={(e) => authenticate(e)} className="login">
                 <h1 className="mt-5 text-center">Login</h1>
                 <div className="container p-4" style={{ maxWidth: '600px', border: '1px solid #ced4da' }}>
                     <Form.Group>
